@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taskDefinition id="elasticsearch_document_bulk_api" name="Elasticsearch Document Bulk API" schema_version="1.0" version="1">
+    <author>support@kineticdata.com</author>
+    <description>
+        Creates, updates, or deltes documents in Elasticsearch in bulk.
+    </description>
+    <helpurl></helpurl>
+    <visible>true</visible>
+    <deferrable>false</deferrable>
+    <parameters>
+        <parameter id="error_handling" label="Error Handling" required="true"
+          tooltip="Determine what to return if an error is encountered." menu="Error Message,Raise Error">Error Message</parameter>
+        <parameter id="payload_ndjson" label="Payload NDJSON" required="true"
+          tooltip="The index to save the document to."/>
+        <parameter id="return_response" label="Return Elasticsearch response" required="true"
+            tooltip="yes or no for whether the Elasticsearch response is returned by this handler.">no</parameter>
+    </parameters>
+    <handler name="elasticsearch_document_bulk_api" version="1">
+        <infos>
+            <info name="api_password">&lt;%= @info['api_password'] %&gt;</info>
+            <info name="api_server">&lt;%= @info['api_server'] %&gt;</info>
+            <info name="api_username">&lt;%= @info['api_username'] %&gt;</info>
+        </infos>
+        <parameters>
+            <parameter name="error_handling">&lt;%= @parameters.has_key?("error_handling") ? @parameters["error_handling"] : "Raise" %&gt;</parameter>
+            <parameter name="payload_ndjson">&lt;%= @parameters['payload_ndjson'] %&gt;</parameter>
+            <parameter name="return_response">&lt;%= @parameters['return_response'] %&gt;</parameter>
+        </parameters>
+    </handler>
+    <results format="xml">
+        <result name="Handler Error Message"/>
+        <result name="Elasticsearch response"/>
+    </results>
+</taskDefinition>
