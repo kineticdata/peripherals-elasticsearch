@@ -4,4 +4,5 @@ categories:
 - Database
 - Storage
 - Search
-display-name: Elasticsearch
+display-name: ElasticSearch
+description: ElasticSearch is an open source, RESTful search engine built on top of Apache Lucene and released under an Apache license. It is Java-based and can search and index document files in diverse formats.
